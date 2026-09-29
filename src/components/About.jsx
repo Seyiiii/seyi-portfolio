@@ -47,6 +47,61 @@ export const About = () => (
             Based in Lagos, Nigeria, I am actively building production-grade software and exploring
             modern backend architectures, database optimizations, and cloud deployments.
           </p>
+
+          {/* Core Engineering Pillars */}
+          <div
+            className="pt-6 mt-6 grid grid-cols-1 sm:grid-cols-3 gap-5"
+            style={{ borderTop: `1px solid ${C.panelBorder}66` }}
+          >
+            <div>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 12,
+                  color: C.teal,
+                  fontWeight: 600,
+                  letterSpacing: "0.04em",
+                }}
+              >
+                01 / ARCHITECTURE
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: C.inkSoft, marginTop: 4, lineHeight: 1.5 }}>
+                5-tier RBAC, indexed tenant isolation, and modular REST API design.
+              </p>
+            </div>
+            <div>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 12,
+                  color: C.brass,
+                  fontWeight: 600,
+                  letterSpacing: "0.04em",
+                }}
+              >
+                02 / RELIABILITY
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: C.inkSoft, marginTop: 4, lineHeight: 1.5 }}>
+                Atomic stock validation, real-time audit logs, and Postman API test suites.
+              </p>
+            </div>
+            <div>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 12,
+                  color: C.ink,
+                  fontWeight: 600,
+                  letterSpacing: "0.04em",
+                }}
+              >
+                03 / CLOUD &amp; DEVOPS
+              </p>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: C.inkSoft, marginTop: 4, lineHeight: 1.5 }}>
+                GitHub Actions CI/CD pipelines, Vercel &amp; Render hosting, AWS telemetry.
+              </p>
+            </div>
+          </div>
         </div>
       </Reveal>
     </div>

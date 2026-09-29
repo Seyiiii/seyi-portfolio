@@ -113,6 +113,12 @@ export const PROJECTS = [
       "Implemented product CRUD with Cloudinary uploads, cart system, and real-time stock validation.",
       "Deployed frontend on Vercel and backend on Render; integrated Nodemailer for transactional email notifications.",
     ],
+    architecture: [
+      { title: "5-Tier RBAC", detail: "Granular access control across Admin, Manager, Staff, Auditor, and Viewer with JWT middleware guards." },
+      { title: "Audit Trail", detail: "Real-time stock movement logging with atomic inventory decrement on order completion." },
+      { title: "Cloud Media", detail: "Cloudinary upload pipeline with server-side validation and responsive image transformation." },
+      { title: "Production Stack", detail: "Vercel edge frontend + Render backend API + MongoDB Atlas cloud database." },
+    ],
   },
   {
     status: "CAPSTONE",
@@ -128,33 +134,39 @@ export const PROJECTS = [
       "Built Candidate Management module in a 7-person team: bulk registration, group administration, and strict tenant isolation via tenantId indexing.",
       "Contributed backend services, controllers, and routes; collaborated through Agile sprint cycles, code reviews, and Git workflows.",
     ],
+    architecture: [
+      { title: "Tenant Isolation", detail: "Strict logical separation enforced via indexed tenantId queries across all database collections." },
+      { title: "Candidate Engine", detail: "High-throughput batch student registration with validation and automated credential generation." },
+      { title: "CI / CD Automation", detail: "Automated linting and test verification via GitHub Actions workflows on pull request merges." },
+      { title: "Agile Team Delivery", detail: "Collaborative 7-engineer squad with sprint retrospectives, Git branching, and peer code reviews." },
+    ],
   },
 ];
 
 export const SKILLS = [
   {
-    group: "Backend Development",
-    items: ["Node.js", "Express.js", "REST API Design", "MVC Architecture", "JWT", "RBAC", "Multitenant SaaS"],
+    group: "Backend & Systems",
+    items: ["Node.js", "Express.js", "REST API Design", "MVC Architecture", "JWT Authentication", "RBAC", "Multitenant SaaS", "Audit Logging"],
   },
   {
     group: "Frontend Development",
-    items: ["React", "Next.js", "Vite", "Tailwind CSS", "HTML5", "CSS3", "JavaScript"],
+    items: ["React", "Next.js", "Vite", "Tailwind CSS", "HTML5", "CSS3", "JavaScript (ES6+)"],
   },
   {
-    group: "Databases",
+    group: "Databases & Storage",
     items: ["MongoDB", "Mongoose", "PostgreSQL"],
   },
   {
     group: "Cloud & DevOps",
-    items: ["Cloudinary", "Render", "Vercel", "Nodemailer"],
+    items: ["AWS (CloudWatch, EC2/S3)", "GitHub Actions (CI/CD)", "Render", "Vercel", "Cloudinary", "Nodemailer"],
   },
   {
-    group: "Tools & Workflow",
-    items: ["Git", "GitHub", "Postman", "Linux CLI", "Agile/Scrum", "Code Reviews"],
+    group: "Tools & Testing",
+    items: ["Git", "GitHub", "Postman (API Testing)", "Linux CLI", "Agile/Scrum", "Code Reviews"],
   },
   {
     group: "Languages",
-    items: ["JavaScript", "Ruby", "HTML", "CSS"],
+    items: ["JavaScript", "TypeScript (Active)", "Ruby", "HTML", "CSS"],
   },
 ];
 

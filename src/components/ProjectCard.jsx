@@ -102,10 +102,10 @@ export const ProjectCard = ({ project }) => {
         aria-labelledby={panelId}
         inert={!expanded ? "" : undefined}
         style={{
-          maxHeight: expanded ? 500 : 0,
+          maxHeight: expanded ? 850 : 0,
           overflow: "hidden",
           visibility: expanded ? "visible" : "hidden",
-          transition: "max-height 0.35s ease, visibility 0.35s ease",
+          transition: "max-height 0.4s ease, visibility 0.4s ease",
         }}
       >
         <div className="px-5 py-5">
@@ -130,6 +130,61 @@ export const ProjectCard = ({ project }) => {
                 </li>
               ))}
             </ul>
+          )}
+
+          {/* Production & Architecture Highlights */}
+          {project.architecture && (
+            <div className="mt-5 pt-4" style={{ borderTop: `1px solid ${C.panelBorder}66` }}>
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 11.5,
+                  color: C.brass,
+                  letterSpacing: "0.04em",
+                  marginBottom: 10,
+                  textTransform: "uppercase",
+                  fontWeight: 600,
+                }}
+              >
+                Production &amp; Architecture Highlights
+              </p>
+              <div className="grid sm:grid-cols-2 gap-2.5">
+                {project.architecture.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-3 rounded"
+                    style={{
+                      background: "rgba(10, 14, 20, 0.45)",
+                      border: `1px solid ${C.panelBorder}`,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: 12,
+                        color: C.teal,
+                        fontWeight: 600,
+                        display: "block",
+                        marginBottom: 3,
+                      }}
+                    >
+                      {item.title}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-sans)",
+                        fontSize: 13,
+                        color: C.inkSoft,
+                        lineHeight: 1.5,
+                        display: "block",
+                      }}
+                    >
+                      {item.detail}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
 
           {/* Tech Stack */}

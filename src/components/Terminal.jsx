@@ -10,10 +10,25 @@ const COMMANDS = {
     "  about       — Background & professional summary",
     "  projects    — Production & capstone systems",
     "  experience  — Roles at DVWorkers, Obitech & TS Academy",
+    "  arch        — Production architecture & engineering principles",
     "  skills      — Core competencies & tech stack",
     "  contact     — Email, phone, LinkedIn & GitHub",
     "  whoami      — Developer identity",
     "  clear       — Clear the terminal buffer",
+  ],
+  arch: [
+    "Production Architecture & Engineering Principles:",
+    "  • Security: 5-tier RBAC guards, stateless JWTs, bcrypt salt hashing.",
+    "  • Data Hygiene: strict tenantId indexing for SaaS isolation, atomic stock validation.",
+    "  • Testing: Postman automated collection test runs, edge-case audit logging.",
+    "  • Cloud & Telemetry: GitHub Actions CI/CD, AWS CloudWatch infrastructure monitoring.",
+  ],
+  production: [
+    "Production Architecture & Engineering Principles:",
+    "  • Security: 5-tier RBAC guards, stateless JWTs, bcrypt salt hashing.",
+    "  • Data Hygiene: strict tenantId indexing for SaaS isolation, atomic stock validation.",
+    "  • Testing: Postman automated collection test runs, edge-case audit logging.",
+    "  • Cloud & Telemetry: GitHub Actions CI/CD, AWS CloudWatch infrastructure monitoring.",
   ],
   whoami: [
     `${PROFILE.name.toLowerCase().replace(/\s+/g, "_")}`,
@@ -228,7 +243,7 @@ export const Terminal = () => {
         className="px-4 py-3 flex flex-wrap gap-2"
         style={{ borderTop: `1px solid ${C.panelBorder}` }}
       >
-        {["help", "about", "projects", "experience", "skills", "contact", "clear"].map((c) => (
+        {["help", "about", "projects", "arch", "experience", "skills", "contact", "clear"].map((c) => (
           <button
             key={c}
             type="button"
