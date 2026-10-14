@@ -22,8 +22,8 @@ const COMMANDS = {
   ],
   about: [
     "Oluwaseyi Aina — Software Developer based in Lagos, Nigeria.",
-    "Background in BSc Physics (Lagos State University) + TS Academy Backend Bootcamp.",
-    "Specializing in full-stack MERN platforms, five-tier RBAC, and secure REST APIs.",
+    "BSc Physics (Lagos State University) + TS Academy Backend Bootcamp.",
+    "Full-stack MERN apps, backend APIs, and hands-on QA/debugging.",
     `Currently: ${PROFILE.currentRole}.`,
   ],
   experience: EXPERIENCE.map((e) => `${e.date.padEnd(20, " ")} ${e.role} @ ${e.org}`),

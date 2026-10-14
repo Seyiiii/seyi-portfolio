@@ -28,24 +28,31 @@ export const About = () => (
           className="space-y-5"
         >
           <p>
-            I came into software through physics, not the other way round — three years at Lagos State
-            University spent measuring things carefully and asking why a result didn&apos;t match the
-            model. That habit carried over almost exactly: I still want to know why a system behaves the
-            way it does, not just that it does.
+            I studied physics at Lagos State University. Most of the degree was measuring something
+            carefully and working out why the result didn&apos;t match the model. I debug the same way
+            now: reproduce the problem, narrow it down, and change one thing at a time.
           </p>
           <p>
-            A backend development bootcamp at TS Academy turned that instinct into the MERN stack —
-            Node.js, Express, MongoDB, and React — and a seven-person capstone project gave me my first
-            real multitenant system to reason about and architect.
+            I then completed the backend bootcamp at TS Academy, working in Node.js, Express, MongoDB, and
+            React. The capstone was a multitenant computer-based testing platform built by a team of seven. I wrote
+            the Candidate Management module, including the tenant data isolation.
           </p>
           <p>
-            Today I work in Technical Support at DVWorkers, a Lagos-based blue-collar job marketplace,
-            learning the system architecture and codebase from the platform development team, resolving
-            bugs, maintaining technical documentation, and monitoring AWS infrastructure usage.
+            Right now I&apos;m in technical support at DVWorkers, a job marketplace in Lagos for
+            blue-collar workers. I&apos;m learning the codebase and hosting setup from the developers
+            who built it, fixing bugs, retesting fixes on staging, writing documentation, and keeping an
+            eye on AWS infrastructure.
           </p>
           <p>
-            Based in Lagos, Nigeria, I am actively building production-grade software and exploring
-            modern backend architectures, database optimizations, and cloud deployments.
+            Outside work I build my own projects. The{" "}
+            <a
+              href="#work"
+              className="hover:underline"
+              style={{ color: C.teal }}
+            >
+              inventory system
+            </a>{" "}
+            is live if you want to click around. I&apos;m looking for software developer roles with a focus on backend and full-stack systems.
           </p>
         </div>
       </Reveal>

@@ -86,7 +86,7 @@ export const Hero = () => {
             }}
             className="mb-4"
           >
-            {PROFILE.location} · available on request
+            {PROFILE.location} · open to software developer roles
           </p>
 
           <h1
@@ -123,7 +123,7 @@ export const Hero = () => {
               maxWidth: "34rem",
             }}
           >
-            I build full-stack MERN applications and multitenant SaaS platforms, and I spend just as much time proving they actually work: designing test cases, validating APIs, and tracking down edge-case bugs.
+            I build full-stack MERN applications and backend APIs, and I spend just as much time proving they actually work: writing test cases, validating endpoints, and tracking down edge-case bugs.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mt-8">

@@ -1,14 +1,3 @@
-/* ==========================================================
-   PORTFOLIO DATA — Single Source of Truth
-   
-   HOW TO EDIT:
-   - Edit PROFILE for name, email, roles, social links.
-   - Edit EXPERIENCE to add/update jobs or education.
-   - Edit PROJECTS to add/update project cards.
-   - Edit SKILLS to add/update skills by category.
-   - Edit CERTS to add/update certifications.
-   ========================================================== */
-
 export const C = {
   bg: "#0A0E14",
   bgAlt: "#0E141C",
@@ -27,12 +16,12 @@ export const PROFILE = {
   name: "Oluwaseyi Aina",
   initials: "OA",
   role: "Software Developer",
-  roleSecondary: "Backend & Systems",
+  roleSecondary: "Full-Stack MERN & QA",
   roles: [
     "Software Developer",
     "Full-Stack MERN Developer",
-    "Physics Graduate",
-    "REST API & Systems Builder",
+    "Backend & APIs (Node.js)",
+    "QA & Debugging",
   ],
   location: "Lagos, Nigeria",
   email: "ainaseyim@gmail.com",
@@ -42,9 +31,9 @@ export const PROFILE = {
   linkedin: "https://www.linkedin.com/in/oluwaseyiaina/",
   linkedinHandle: "linkedin.com/in/oluwaseyiaina",
   currentRole: "Technical Support at DVWorkers",
-  status: "Software Developer · active at DVWorkers",
+  status: "Technical Support at DVWorkers · open to software developer roles",
   resumeUrl: "/Oluwaseyi_Aina_Resume.pdf",
-  bio: "Impact-driven Software Developer with hands-on experience building and deploying full-stack MERN applications, multitenant SaaS platforms, and secure REST APIs. Physics graduate turned software engineer applying first-principles reasoning to backend architecture, database design, and debugging.",
+  bio: "Software developer in Lagos working with Node.js, Express, MongoDB, and React. I build full-stack web applications and APIs, and I test what I build. I studied physics at LASU, completed the TS Academy backend bootcamp, and work in technical support at DVWorkers, handling bugs, QA retesting, and documentation.",
 };
 
 export const NAV_LINKS = [
@@ -55,6 +44,7 @@ export const NAV_LINKS = [
   { name: "Contact", href: "contact" },
 ];
 
+// Chronological order: Newest first
 export const EXPERIENCE = [
   {
     date: "2026 — PRESENT",
@@ -62,18 +52,10 @@ export const EXPERIENCE = [
     org: "DVWorkers",
     meta: "Lagos, Nigeria",
     points: [
-      "Technical support for a Lagos blue-collar job marketplace startup, learning the system architecture, hosting and codebase from the platform development team.",
-      "Resolving bugs, maintaining technical documentation and monitoring AWS infrastructure usage.",
-    ],
-  },
-  {
-    date: "JUL — NOV 2024",
-    role: "Project Engineer (Intern)",
-    org: "Obitech Nig Ltd",
-    meta: "Lagos, Nigeria",
-    points: [
-      "Assisted senior engineers with project requirements, planning and material/equipment estimations.",
-      "Supported cross-functional coordination and documentation on active engineering projects.",
+      "Supporting a Lagos job marketplace for blue-collar workers, learning the codebase, architecture, and cloud setup from the development team.",
+      "Fixing bugs, keeping technical documentation current, and monitoring AWS infrastructure usage.",
+      "Retested 12 staging defects independently and maintain the test-case tracker. Built a Playwright crawler to speed up triage.",
+      "Coordinating planned integrations with WhatsApp and Smile ID (identity verification).",
     ],
   },
   {
@@ -82,8 +64,9 @@ export const EXPERIENCE = [
     org: "TS Academy",
     meta: "Lagos, Nigeria · Intensive Fellowship",
     points: [
-      "Built the Candidate Management module on a seven-person capstone team for a multitenant SaaS CBT platform.",
-      "Built a full-stack MERN inventory and order-management platform with five-tier role-based access control, Cloudinary image uploads, a cart-and-order pipeline, real-time stock validation, and audit logging.",
+      "Four months of backend engineering: Node.js, Express, MongoDB, authentication, and REST API design.",
+      "Capstone: a multitenant computer-based testing platform built by a team of seven. I wrote the Candidate Management module, including bulk registration and tenant data isolation.",
+      "Collaborated in Agile sprints with peer code reviews and Git workflows.",
     ],
   },
   {
@@ -92,7 +75,17 @@ export const EXPERIENCE = [
     org: "Lagos State University",
     meta: "Lagos, Nigeria · Education",
     points: [
-      "Graduated with a physics background before moving into software engineering — the same instinct for tracing a system back to first principles now informs how I debug, model data, and test.",
+      "Most of a physics degree is measuring something carefully and working out why the result doesn't match the model. I debug software the same way: isolate variables, reproduce the problem, and change one thing at a time.",
+    ],
+  },
+  {
+    date: "JUL — NOV 2024",
+    role: "Project Engineer (Intern)",
+    org: "Obitech Nig Ltd",
+    meta: "Lagos, Nigeria · Undergraduate Internship",
+    points: [
+      "Helped senior engineers with project requirements, planning, and material and equipment estimates.",
+      "Supported cross-functional coordination and technical documentation on active engineering projects.",
     ],
   },
 ];
@@ -104,14 +97,15 @@ export const PROJECTS = [
     title: "Seyi Inventory System",
     category: "Personal Project — Deployed (2025)",
     description:
-      "A full-stack MERN inventory and order management platform with a five-tier RBAC system covering Admin, Manager, Staff, Auditor, and Viewer roles. Features Cloudinary image uploads, cart system, order flow with real-time stock validation, audit logging, and Nodemailer transactional notifications.",
+      "An inventory and order management app with role-based access, built end-to-end on the MERN stack and deployed.",
     stack: ["Node.js", "Express", "MongoDB", "JWT", "Cloudinary", "Nodemailer", "React", "Render", "Vercel"],
     link: "https://seyi-inventory-system.vercel.app/",
     linkLabel: "seyi-inventory-system.vercel.app",
     points: [
-      "Built a full-stack MERN inventory and order management platform with five-tier RBAC covering Admin, Manager, Staff, Auditor, and Viewer roles.",
-      "Implemented product CRUD with Cloudinary uploads, cart system, and real-time stock validation.",
-      "Deployed frontend on Vercel and backend on Render; integrated Nodemailer for transactional email notifications.",
+      "Five roles (Admin, Manager, Staff, Auditor, Viewer), each with its own permissions enforced on the backend with JWT authentication.",
+      "Product catalog with Cloudinary image uploads, cart system, and an order checkout flow that verifies stock before an order completes.",
+      "Audit logging for all stock movements, and Nodemailer for transactional email notifications.",
+      "Deployed frontend on Vercel and Express API on Render.",
     ],
   },
   {
@@ -120,13 +114,14 @@ export const PROJECTS = [
     title: "Multitenant CBT Platform",
     category: "TS Academy — Group Capstone Project (2026)",
     description:
-      "A group capstone project: a multitenant computer-based testing SaaS platform. Built the Candidate Management module in a seven-person squad with bulk candidate registration and strict tenant data isolation enforced via tenantId indexing.",
+      "A multitenant computer-based testing platform built by a team of seven during the TS Academy bootcamp. My part was the Candidate Management module.",
     stack: ["Node.js", "Express", "MongoDB", "Mongoose", "GitHub Actions", "REST APIs"],
     link: null,
-    linkLabel: "Team Capstone Project",
+    linkLabel: "Team capstone project",
     points: [
-      "Built Candidate Management module in a 7-person team: bulk registration, group administration, and strict tenant isolation via tenantId indexing.",
-      "Contributed backend services, controllers, and routes; collaborated through Agile sprint cycles, code reviews, and Git workflows.",
+      "Candidate Management: bulk registration, candidate groups, and tenant data isolation.",
+      "Enforced tenant isolation by scoping queries with tenantId.",
+      "Wrote backend services, controllers, and routes in Agile sprints with peer code reviews.",
     ],
   },
 ];
