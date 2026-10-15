@@ -199,13 +199,13 @@ export const Experience = () => (
         <div className="mt-16 mb-8 flex items-center gap-2" style={{ fontFamily: "var(--font-mono)" }}>
           <GraduationCap size={15} color={C.teal} aria-hidden="true" />
           <span style={{ color: C.teal, fontSize: 12.5, fontWeight: 600, letterSpacing: "0.05em" }}>
-            FORMAL EDUCATION
+            EDUCATION
           </span>
           <span style={{ flex: 1, height: 1, background: `${C.panelBorder}88` }} />
         </div>
 
         <div
-          className="relative pl-6 sm:pl-8"
+          className="relative pl-6 sm:pl-8 space-y-10 sm:space-y-12"
           style={{ borderLeft: `2px solid ${C.panelBorder}` }}
         >
           {EDUCATION.map((edu, i) => (

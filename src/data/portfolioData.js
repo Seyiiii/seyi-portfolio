@@ -43,7 +43,7 @@ export const NAV_LINKS = [
   { name: "Contact", href: "contact" },
 ];
 
-// Work & Technical Roles (Newest first)
+// Work & Industry Roles (Newest first)
 export const EXPERIENCE = [
   {
     date: "2026 — PRESENT",
@@ -55,17 +55,6 @@ export const EXPERIENCE = [
       "Fixing bugs, keeping technical documentation current, and monitoring AWS infrastructure usage.",
       "Retested 12 staging defects independently and maintain the test-case tracker. Built a Playwright crawler to speed up triage.",
       "Coordinating planned integrations with WhatsApp and Smile ID (identity verification).",
-    ],
-  },
-  {
-    date: "FEB — MAY 2026",
-    role: "Backend Development Bootcamp",
-    org: "TS Academy",
-    meta: "Lagos, Nigeria · Intensive Fellowship",
-    points: [
-      "Four months of backend engineering: Node.js, Express, MongoDB, authentication, and REST API design.",
-      "Capstone: a multitenant computer-based testing platform built by a team of seven. I wrote the Candidate Management module, including bulk registration and tenant data isolation.",
-      "Collaborated in Agile sprints with peer code reviews and Git workflows.",
     ],
   },
   {
@@ -98,8 +87,19 @@ export const CERTS = [
   },
 ];
 
-// Formal Higher Education
+// Education (Bootcamp & Academic Degrees, newest first)
 export const EDUCATION = [
+  {
+    date: "FEB — MAY 2026",
+    degree: "Backend Development Bootcamp",
+    school: "TS Academy",
+    meta: "Lagos, Nigeria · Intensive Fellowship",
+    points: [
+      "Four months of backend engineering: Node.js, Express, MongoDB, authentication, and REST API design.",
+      "Capstone: a multitenant computer-based testing platform built by a team of seven. I wrote the Candidate Management module, including bulk registration and tenant data isolation.",
+      "Collaborated in Agile sprints with peer code reviews and Git workflows.",
+    ],
+  },
   {
     date: "JUL 2022 — SEP 2025",
     degree: "Bachelor of Science (BSc), Physics",
