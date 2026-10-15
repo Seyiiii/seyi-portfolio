@@ -31,7 +31,6 @@ const COMMANDS = {
   skills: SKILLS.map((s) => `${s.group}: ${s.items.join(", ")}`),
   contact: [
     `Email    : ${PROFILE.email}`,
-    `Phone    : ${PROFILE.phone}`,
     `LinkedIn : ${PROFILE.linkedinHandle}`,
     `GitHub   : ${PROFILE.githubHandle}`,
     `Location : ${PROFILE.location}`,

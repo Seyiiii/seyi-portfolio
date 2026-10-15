@@ -47,7 +47,14 @@ export const About = () => (
             Outside work I build my own projects. The{" "}
             <a
               href="#work"
-              className="hover:underline"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+                if (window.location.hash) {
+                  history.replaceState(null, "", window.location.pathname);
+                }
+              }}
+              className="hover:underline cursor-pointer"
               style={{ color: C.teal }}
             >
               inventory system

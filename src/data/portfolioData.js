@@ -25,7 +25,6 @@ export const PROFILE = {
   ],
   location: "Lagos, Nigeria",
   email: "ainaseyim@gmail.com",
-  phone: "+234 906 073 1501",
   github: "https://github.com/Seyiiii",
   githubHandle: "github.com/Seyiiii",
   linkedin: "https://www.linkedin.com/in/oluwaseyiaina/",
@@ -44,7 +43,7 @@ export const NAV_LINKS = [
   { name: "Contact", href: "contact" },
 ];
 
-// Chronological order: Newest first
+// Work & Technical Roles (Newest first)
 export const EXPERIENCE = [
   {
     date: "2026 — PRESENT",
@@ -70,15 +69,6 @@ export const EXPERIENCE = [
     ],
   },
   {
-    date: "JUL 2022 — SEP 2025",
-    role: "Bachelor of Science (BSc), Physics",
-    org: "Lagos State University",
-    meta: "Lagos, Nigeria · Education",
-    points: [
-      "Most of a physics degree is measuring something carefully and working out why the result doesn't match the model. I debug software the same way: isolate variables, reproduce the problem, and change one thing at a time.",
-    ],
-  },
-  {
     date: "JUL — NOV 2024",
     role: "Project Engineer (Intern)",
     org: "Obitech Nig Ltd",
@@ -86,6 +76,37 @@ export const EXPERIENCE = [
     points: [
       "Helped senior engineers with project requirements, planning, and material and equipment estimates.",
       "Supported cross-functional coordination and technical documentation on active engineering projects.",
+    ],
+  },
+];
+
+// Certifications (Positioned before Education)
+export const CERTS = [
+  {
+    name: "Microsoft Certified: GitHub Foundations",
+    issuer: "Microsoft",
+    date: "Jan 2026",
+    tag: "DevOps & Version Control",
+    color: C.teal,
+  },
+  {
+    name: "Alison Certified: Ruby Intermediate",
+    issuer: "Alison",
+    date: "Nov 2025",
+    tag: "Object-Oriented Programming",
+    color: C.brass,
+  },
+];
+
+// Formal Higher Education
+export const EDUCATION = [
+  {
+    date: "JUL 2022 — SEP 2025",
+    degree: "Bachelor of Science (BSc), Physics",
+    school: "Lagos State University",
+    meta: "Lagos, Nigeria · Undergraduate Degree",
+    points: [
+      "Most of a physics degree is measuring something carefully and working out why the result doesn't match the model. I debug software the same way: isolate variables, reproduce the problem, and change one thing at a time.",
     ],
   },
 ];
@@ -151,9 +172,4 @@ export const SKILLS = [
     group: "Languages",
     items: ["JavaScript", "Ruby", "HTML", "CSS"],
   },
-];
-
-export const CERTS = [
-  { name: "Microsoft Certified: GitHub Foundations", date: "Jan 2026" },
-  { name: "Alison Certified: Ruby Intermediate", date: "Nov 2025" },
 ];

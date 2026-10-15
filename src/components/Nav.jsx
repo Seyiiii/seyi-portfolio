@@ -38,6 +38,26 @@ export const Nav = () => {
     return () => obs.disconnect();
   }, []);
 
+  const scrollToTop = (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname);
+    }
+  };
+
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname);
+    }
+    setOpen(false);
+  };
+
   return (
     <>
       <a
@@ -61,7 +81,12 @@ export const Nav = () => {
         }}
       >
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#top" className="flex items-center gap-3" aria-label="Back to top">
+          <a
+            href="#top"
+            onClick={scrollToTop}
+            className="flex items-center gap-3 cursor-pointer"
+            aria-label="Back to top"
+          >
             <span
               className="flex items-center justify-center w-9 h-9 rounded"
               style={{
@@ -82,6 +107,7 @@ export const Nav = () => {
               <a
                 key={l.name}
                 href={`#${l.href}`}
+                onClick={(e) => scrollToSection(e, l.href)}
                 style={{
                   fontFamily: "var(--font-mono)",
                   fontSize: 13,
@@ -90,7 +116,7 @@ export const Nav = () => {
                   paddingBottom: 3,
                   transition: "color 0.2s, border-color 0.2s",
                 }}
-                className="hover:text-white"
+                className="hover:text-white cursor-pointer"
               >
                 {l.name}
               </a>
@@ -133,12 +159,13 @@ export const Nav = () => {
               <a
                 key={l.name}
                 href={`#${l.href}`}
-                onClick={() => setOpen(false)}
+                onClick={(e) => scrollToSection(e, l.href)}
                 style={{
                   fontFamily: "var(--font-mono)",
                   fontSize: 14,
                   color: active === l.href ? C.teal : C.ink,
                 }}
+                className="cursor-pointer"
               >
                 {l.name}
               </a>

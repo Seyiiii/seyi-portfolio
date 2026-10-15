@@ -129,7 +129,14 @@ export const Hero = () => {
           <div className="flex flex-wrap items-center gap-4 mt-8">
             <a
               href="#work"
-              className="px-5 py-3 rounded font-semibold transition-transform hover:-translate-y-0.5"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+                if (window.location.hash) {
+                  history.replaceState(null, "", window.location.pathname);
+                }
+              }}
+              className="px-5 py-3 rounded font-semibold transition-transform hover:-translate-y-0.5 cursor-pointer"
               style={{
                 background: C.teal,
                 color: C.bg,

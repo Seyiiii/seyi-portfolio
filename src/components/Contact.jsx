@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, Phone, MapPin, ArrowUpRight, Copy, Check } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight, Copy, Check, Send } from "lucide-react";
 import { PROFILE, C } from "../data/portfolioData";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import Reveal from "./Reveal";
@@ -95,24 +95,39 @@ export const Contact = () => (
       </div>
 
       <Reveal>
-        <h2
-          style={{
-            fontFamily: "var(--font-serif)",
-            color: C.ink,
-            fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
-            fontWeight: 600,
-            lineHeight: 1.3,
-            maxWidth: "30rem",
-          }}
-        >
-          Reach out about software developer roles, or just to talk systems.
-        </h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <h2
+            style={{
+              fontFamily: "var(--font-serif)",
+              color: C.ink,
+              fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
+              fontWeight: 600,
+              lineHeight: 1.3,
+              maxWidth: "30rem",
+            }}
+          >
+            Reach out about software developer roles, or just to talk systems.
+          </h2>
+
+          <a
+            href={`mailto:${PROFILE.email}`}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded font-medium transition-transform hover:-translate-y-0.5 shrink-0"
+            style={{
+              background: C.teal,
+              color: C.bg,
+              fontFamily: "var(--font-sans)",
+              fontSize: 14,
+              fontWeight: 600,
+            }}
+          >
+            <Send size={15} aria-hidden="true" /> Send an Email
+          </a>
+        </div>
       </Reveal>
 
       <Reveal delay={120}>
         <div className="mt-12">
           <CopyRow label="EMAIL" value={PROFILE.email} href={`mailto:${PROFILE.email}`} icon={Mail} />
-          <CopyRow label="PHONE" value={PROFILE.phone} href={`tel:${PROFILE.phone.replace(/\s/g, "")}`} icon={Phone} />
           <CopyRow label="LINKEDIN" value={PROFILE.linkedinHandle} href={PROFILE.linkedin} icon={LinkedinIcon} external />
           <CopyRow label="GITHUB" value={PROFILE.githubHandle} href={PROFILE.github} icon={GithubIcon} external />
           <div

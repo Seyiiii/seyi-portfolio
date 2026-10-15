@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="12" fill="#0A0E14"/>
-  <rect x="4" y="4" width="56" height="56" rx="9" fill="none" stroke="#5CD1B8" stroke-width="2"/>
-  <text x="32" y="41" text-anchor="middle" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="22" font-weight="700" fill="#E8EDF3">OA</text>
+  <rect width="64" height="64" rx="14" fill="#0A0E14"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="12" fill="none" stroke="#5CD1B8" stroke-width="3" stroke-opacity="0.85"/>
+  <text x="32" y="34" text-anchor="middle" dominant-baseline="central" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'JetBrains Mono', monospace" font-size="35" font-weight="900" letter-spacing="-1.5" fill="#5CD1B8">OA</text>
 </svg>

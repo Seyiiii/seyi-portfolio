@@ -1,5 +1,5 @@
 import React from "react";
-import { SKILLS, CERTS, C } from "../data/portfolioData";
+import { SKILLS, C } from "../data/portfolioData";
 import Reveal from "./Reveal";
 import SectionLabel from "./SectionLabel";
 
@@ -47,48 +47,6 @@ export const Skills = () => (
           </Reveal>
         ))}
       </div>
-
-      <Reveal delay={200}>
-        <div
-          className="mt-14 pt-8"
-          style={{ borderTop: `1px solid ${C.panelBorder}` }}
-        >
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: 12.5,
-              color: C.brass,
-              marginBottom: 10,
-            }}
-          >
-            CERTIFICATIONS
-          </p>
-          <ul className="space-y-2">
-            {CERTS.map((c) => (
-              <li
-                key={c.name}
-                className="flex justify-between"
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  color: C.inkSoft,
-                  fontSize: 15,
-                }}
-              >
-                <span className="text-white/90">{c.name}</span>
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 13,
-                    color: C.inkFaint,
-                  }}
-                >
-                  {c.date}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </Reveal>
     </div>
   </section>
 );

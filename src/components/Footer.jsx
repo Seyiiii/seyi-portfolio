@@ -15,6 +15,9 @@ export const Footer = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname);
+    }
   };
 
   return (
