@@ -100,7 +100,7 @@ export const ProjectCard = ({ project }) => {
         id={panelId}
         role="region"
         aria-labelledby={panelId}
-        inert={!expanded ? "" : undefined}
+        inert={!expanded || undefined}
         style={{
           maxHeight: expanded ? 500 : 0,
           overflow: "hidden",
