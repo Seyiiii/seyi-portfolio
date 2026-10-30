@@ -41,6 +41,21 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Modern Web Guidance: Balanced typography & readability */
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+p, li {
+  text-wrap: pretty;
+}
+
+/* Rendering performance optimization for long scroll sections */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
+
 ::selection {
   background: rgba(92, 209, 184, 0.25);
   color: #E8EDF3;

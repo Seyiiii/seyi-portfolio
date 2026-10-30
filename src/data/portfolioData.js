@@ -32,8 +32,15 @@ export const PROFILE = {
   currentRole: "Technical Support at DVWorkers",
   status: "Technical Support at DVWorkers · open to software developer roles",
   resumeUrl: "/Oluwaseyi_Aina_Resume.pdf",
-  bio: "Software developer in Lagos working with Node.js, Express, MongoDB, and React. I build full-stack web applications and APIs, and I test what I build. I studied physics at LASU, completed the TS Academy backend bootcamp, and work in technical support at DVWorkers, handling bugs, QA retesting, and documentation.",
+  bio: "Software developer in Lagos building reliable full-stack web applications and backend APIs. Physics graduate who debugs methodically, builds with Node/Express/React, and takes QA and production data integrity seriously.",
 };
+
+export const METRICS = [
+  { value: "12+", label: "Staging defects caught", sublabel: "Retested independently" },
+  { value: "5-Tier", label: "Custom RBAC built", sublabel: "Live inventory platform" },
+  { value: "MERN", label: "Full-stack architecture", sublabel: "Node, Express, Mongo, React" },
+  { value: "BSc", label: "Physics problem-solving", sublabel: "First-principles debugging" },
+];
 
 export const NAV_LINKS = [
   { name: "About", href: "about" },
