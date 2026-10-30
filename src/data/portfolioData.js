@@ -54,7 +54,7 @@ export const EXPERIENCE = [
       "Supporting a Lagos job marketplace for blue-collar workers, learning the codebase, architecture, and cloud setup from the development team.",
       "Implemented the Smile ID identity verification system for worker onboarding, KYC validation, and security compliance.",
       "Investigated and resolved production bugs, monitored AWS infrastructure usage, and kept technical documentation current.",
-      "Retested 12 staging defects independently and maintain the comprehensive test-case tracker.",
+      "Retested staging defects independently and maintain the comprehensive test-case tracker.",
     ],
   },
   {

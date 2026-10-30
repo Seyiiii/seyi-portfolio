@@ -92,7 +92,7 @@ export const Contact = () => {
         </Reveal>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start mt-6">
-          {/* Left Column: Direct Invitation & Availability Card */}
+          {/* Left Column: Direct Invitation & Live Availability Status Card */}
           <div className="lg:col-span-6 space-y-6">
             <Reveal delay={80}>
               <h2
@@ -122,7 +122,7 @@ export const Contact = () => {
               </p>
             </Reveal>
 
-            {/* Live Availability Status Card */}
+            {/* Live Availability Status Card (Information & Schedule) */}
             <Reveal delay={120}>
               <div
                 className="rounded-xl p-5"
@@ -150,7 +150,7 @@ export const Contact = () => {
                   </span>
                 </div>
 
-                <div className="space-y-2 text-sm" style={{ color: C.inkSoft, fontFamily: "var(--font-sans)" }}>
+                <div className="space-y-2.5 text-sm" style={{ color: C.inkSoft, fontFamily: "var(--font-sans)" }}>
                   <div className="flex items-center gap-2.5">
                     <Clock size={15} color={C.brassSoft} aria-hidden="true" />
                     <span>Usually replies within 24 hours</span>
@@ -164,93 +164,13 @@ export const Contact = () => {
                     <span>Open to Remote &amp; Onsite opportunities</span>
                   </div>
                 </div>
-
-                {/* Primary Action Button Cluster */}
-                <div className="flex flex-wrap items-center gap-2.5 mt-6 pt-5" style={{ borderTop: `1px solid ${C.panelBorder}88` }}>
-                  {/* Send Email button (mailto + auto-copy clipboard fallback) */}
-                  <button
-                    type="button"
-                    onClick={handleSendEmailClick}
-                    title="Send via your default email application"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-semibold transition-transform hover:-translate-y-0.5 shadow-md cursor-pointer"
-                    style={{
-                      background: C.teal,
-                      color: C.bg,
-                      fontFamily: "var(--font-sans)",
-                      fontSize: 14,
-                    }}
-                  >
-                    <Send size={15} aria-hidden="true" />
-                    <span>Send an Email</span>
-                  </button>
-
-                  {/* Direct Gmail web compose for browser users */}
-                  <a
-                    href={gmailComposeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Open Gmail web compose directly in your browser"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg font-medium transition-all hover:bg-white/5 cursor-pointer"
-                    style={{
-                      border: `1px solid ${C.teal}66`,
-                      color: C.teal,
-                      fontFamily: "var(--font-sans)",
-                      fontSize: 13,
-                    }}
-                  >
-                    <span>Open in Gmail</span>
-                    <ExternalLink size={13} aria-hidden="true" />
-                  </a>
-
-                  {/* Copy Email Button */}
-                  <button
-                    type="button"
-                    onClick={handleCopyEmail}
-                    title="Copy email address to clipboard"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg font-medium transition-all cursor-pointer"
-                    style={{
-                      background: copied ? `${C.teal}18` : "transparent",
-                      border: `1px solid ${copied ? C.teal : C.panelBorder}`,
-                      color: copied ? C.teal : C.inkSoft,
-                      fontFamily: "var(--font-mono)",
-                      fontSize: 13,
-                    }}
-                  >
-                    {copied ? (
-                      <>
-                        <Check size={14} aria-hidden="true" />
-                        <span>Copied</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy size={14} aria-hidden="true" />
-                        <span>Copy</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-
-                {/* Instant Feedback Toast */}
-                {toastMessage && (
-                  <div
-                    className="mt-3 text-xs font-mono px-3 py-1.5 rounded inline-flex items-center gap-2 transition-all animate-fade-in"
-                    style={{
-                      background: `${C.teal}15`,
-                      border: `1px solid ${C.teal}40`,
-                      color: C.teal,
-                    }}
-                  >
-                    <Check size={12} aria-hidden="true" />
-                    <span>{toastMessage}</span>
-                  </div>
-                )}
               </div>
             </Reveal>
           </div>
 
-          {/* Right Column: Interactive Bento Channel Cards */}
+          {/* Right Column: Unified Channels Hub (Single Mailing Section + Social) */}
           <div className="lg:col-span-6 space-y-4">
-            {/* Channel Card 1: Direct Email */}
+            {/* Primary Channel: Direct Email */}
             <Reveal delay={100}>
               <div
                 className="group rounded-xl p-5 transition-all duration-200"
@@ -280,15 +200,16 @@ export const Contact = () => {
                         {PROFILE.email}
                       </div>
 
-                      {/* Quick direct action links */}
+                      {/* Fast Action Links: Copy, Gmail Web, Mail App */}
                       <div className="flex items-center gap-3 mt-3 text-xs font-mono">
                         <button
                           type="button"
                           onClick={handleCopyEmail}
-                          className="hover:underline flex items-center gap-1 cursor-pointer"
+                          className="hover:underline flex items-center gap-1 cursor-pointer transition-colors"
                           style={{ color: C.teal }}
+                          title="Copy email to clipboard"
                         >
-                          <Copy size={11} aria-hidden="true" />
+                          {copied ? <Check size={12} aria-hidden="true" /> : <Copy size={12} aria-hidden="true" />}
                           <span>{copied ? "Copied" : "Copy"}</span>
                         </button>
                         <span style={{ color: C.panelBorder }}>•</span>
@@ -296,22 +217,40 @@ export const Contact = () => {
                           href={gmailComposeUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:underline flex items-center gap-1"
+                          className="hover:underline flex items-center gap-1 transition-colors hover:text-white"
                           style={{ color: C.inkSoft }}
+                          title="Compose message in Gmail web"
                         >
-                          <ExternalLink size={11} aria-hidden="true" />
+                          <ExternalLink size={12} aria-hidden="true" />
                           <span>Gmail</span>
                         </a>
                         <span style={{ color: C.panelBorder }}>•</span>
                         <a
                           href={mailtoUrl}
-                          className="hover:underline flex items-center gap-1"
+                          onClick={handleSendEmailClick}
+                          className="hover:underline flex items-center gap-1 transition-colors hover:text-white cursor-pointer"
                           style={{ color: C.inkSoft }}
+                          title="Open in your default email client"
                         >
-                          <Send size={11} aria-hidden="true" />
+                          <Send size={12} aria-hidden="true" />
                           <span>Mail App</span>
                         </a>
                       </div>
+
+                      {/* Instant Notification Toast */}
+                      {toastMessage && (
+                        <div
+                          className="mt-3 text-xs font-mono px-2.5 py-1 rounded inline-flex items-center gap-1.5 transition-all"
+                          style={{
+                            background: `${C.teal}15`,
+                            border: `1px solid ${C.teal}40`,
+                            color: C.teal,
+                          }}
+                        >
+                          <Check size={11} aria-hidden="true" />
+                          <span>{toastMessage}</span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
