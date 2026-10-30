@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Trash2 } from "lucide-react";
 import { PROFILE, EXPERIENCE, PROJECTS, SKILLS, C } from "../data/portfolioData";
 
 const MAX_TERMINAL_INPUT = 120;
@@ -7,33 +8,54 @@ const MAX_TERMINAL_HISTORY = 100;
 const COMMANDS = {
   help: [
     "Available commands:",
-    "  about       — Background & professional summary",
+    "  about       — Background & engineering summary",
     "  projects    — Production & capstone systems",
     "  experience  — Roles at DVWorkers & Obitech",
-    "  skills      — Core competencies & tech stack",
+    "  skills      — Tech stack & core competencies",
     "  contact     — Email, LinkedIn & GitHub",
     "  whoami      — Developer identity",
-    "  clear       — Clear the terminal buffer",
+    "  clear       — Reset the terminal output",
   ],
   whoami: [
-    `${PROFILE.name.toLowerCase().replace(/\s+/g, "_")}`,
-    `${PROFILE.role} · ${PROFILE.location}`,
-    `Status: ${PROFILE.status}`,
+    `user: ${PROFILE.name.toLowerCase().replace(/\s+/g, "_")}`,
+    `role: ${PROFILE.role} · ${PROFILE.location}`,
+    `status: Open to software developer roles`,
   ],
   about: [
     "Oluwaseyi Aina — Software Developer based in Lagos, Nigeria.",
-    "BSc Physics (Lagos State University) + TS Academy Backend Bootcamp.",
-    "Full-stack MERN apps, backend APIs, and hands-on QA/debugging.",
-    `Currently: ${PROFILE.currentRole}.`,
+    "BSc in Physics (LASU) + TS Academy Backend Bootcamp.",
+    "Focus: Full-stack MERN platforms, REST APIs, and strict data integrity.",
+    `Current: ${PROFILE.currentRole} (Smile ID integration, production error fixes).`,
   ],
-  experience: EXPERIENCE.map((e) => `${e.date.padEnd(20, " ")} ${e.role} @ ${e.org}`),
-  projects: PROJECTS.map((p) => `[${p.status}] ${p.title} — ${p.stack.slice(0, 3).join(", ")}`),
-  skills: SKILLS.map((s) => `${s.group}: ${s.items.join(", ")}`),
+  experience: [
+    "Work & Education Milestones:",
+    "  [2026 — PRES] Technical Support @ DVWorkers (Smile ID, Bug Fixes, AWS)",
+    "  [2026]        Backend Bootcamp @ TS Academy (MERN, CBT Capstone)",
+    "  [2024]        Project Engineer (Intern) @ Obitech",
+    "  [2022 — 2025] BSc Physics @ Lagos State University",
+  ],
+  projects: [
+    "Featured Systems:",
+    "  • [LIVE] Seyi Inventory System",
+    "    Stack: Node.js, Express, MongoDB, JWT, Cloudinary, React",
+    "    Features: 5-Tier RBAC, stock validation, cart & orders, audit log",
+    "  • [CAPSTONE] Multitenant CBT Platform",
+    "    Stack: Node.js, Express, MongoDB, Mongoose, REST APIs",
+    "    Features: Candidate Management module & strict tenantId isolation",
+  ],
+  skills: [
+    "Technical Stack & Core Skills:",
+    "  ▸ Backend   : Node.js, Express.js, REST APIs, MVC, JWT, RBAC",
+    "  ▸ Frontend  : React, Vite, Tailwind CSS, JavaScript, HTML5/CSS3",
+    "  ▸ Databases : MongoDB, Mongoose, PostgreSQL",
+    "  ▸ Cloud & QA: AWS Cloud, Render, Vercel, Smile ID, Git",
+  ],
   contact: [
-    `Email    : ${PROFILE.email}`,
-    `LinkedIn : ${PROFILE.linkedinHandle}`,
-    `GitHub   : ${PROFILE.githubHandle}`,
-    `Location : ${PROFILE.location}`,
+    "Communication Channels:",
+    `  Email   : ${PROFILE.email}`,
+    `  LinkedIn: ${PROFILE.linkedinHandle}`,
+    `  GitHub  : ${PROFILE.githubHandle}`,
+    `  Location: ${PROFILE.location}`,
   ],
 };
 
@@ -53,11 +75,14 @@ export const Terminal = () => {
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
 
-  const bottomRef = useRef(null);
+  const terminalBodyRef = useRef(null);
   const inputRef = useRef(null);
 
+  // Scroll ONLY the terminal body internally; NEVER scroll the outer browser window
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
+    }
   }, [history]);
 
   const run = useCallback((raw) => {
@@ -147,9 +172,9 @@ export const Terminal = () => {
           background: C.bgAlt,
         }}
       >
-        <span style={{ width: 10, height: 10, borderRadius: 999, background: "#E1746A66" }} />
-        <span style={{ width: 10, height: 10, borderRadius: 999, background: "#D9A54B66" }} />
-        <span style={{ width: 10, height: 10, borderRadius: 999, background: "#5CD1B866" }} />
+        <span style={{ width: 10, height: 10, borderRadius: 999, background: "#E1746A88" }} />
+        <span style={{ width: 10, height: 10, borderRadius: 999, background: "#D9A54B88" }} />
+        <span style={{ width: 10, height: 10, borderRadius: 999, background: "#5CD1B888" }} />
         <span
           style={{
             fontFamily: "var(--font-mono)",
@@ -160,37 +185,65 @@ export const Terminal = () => {
         >
           seyi@portfolio:~
         </span>
+
+        {/* 1-Click Clear Button */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            setHistory([]);
+          }}
+          title="Clear terminal buffer"
+          className="ml-auto flex items-center gap-1 text-[11px] font-mono px-2 py-0.5 rounded hover:text-white transition-colors cursor-pointer"
+          style={{ color: C.inkFaint }}
+        >
+          <Trash2 size={12} aria-hidden="true" />
+          <span>clear</span>
+        </button>
       </div>
 
       {/* Terminal log output */}
       <div
+        ref={terminalBodyRef}
         role="log"
         aria-live="polite"
         style={{
           fontFamily: "var(--font-mono)",
-          fontSize: 13.5,
-          lineHeight: 1.75,
-          height: 260,
+          fontSize: 13,
+          lineHeight: 1.65,
+          height: 290,
           overflowY: "auto",
         }}
         className="px-4 py-4"
       >
         {history.map((h, idx) => (
-          <div key={idx} className="mb-2">
+          <div
+            key={idx}
+            className="mb-3.5 pb-3 border-b border-white/5 last:border-b-0 last:mb-0 last:pb-0"
+          >
             {h.cmd && (
-              <div style={{ color: C.brassSoft, wordBreak: "break-word" }}>
-                <span style={{ color: C.teal }}>❯</span> {h.cmd}
+              <div className="flex items-center gap-2 mb-1.5 font-medium" style={{ color: C.brassSoft }}>
+                <span style={{ color: C.teal }}>❯</span>
+                <span className="font-semibold">{h.cmd}</span>
               </div>
             )}
-            {h.output.map((line, lIdx) => (
-              <div key={lIdx} style={{ color: C.inkSoft, whiteSpace: "pre-wrap" }}>
-                {line}
-              </div>
-            ))}
+            <div
+              className="space-y-0.5"
+              style={{
+                paddingLeft: h.cmd ? "1rem" : "0",
+                borderLeft: h.cmd ? `2px solid ${C.teal}33` : "none",
+              }}
+            >
+              {h.output.map((line, lIdx) => (
+                <div key={lIdx} style={{ color: C.inkSoft, whiteSpace: "pre-wrap" }}>
+                  {line}
+                </div>
+              ))}
+            </div>
           </div>
         ))}
 
-        <form onSubmit={onSubmit} className="flex items-center gap-2">
+        <form onSubmit={onSubmit} className="flex items-center gap-2 mt-2">
           <span style={{ color: C.teal }} aria-hidden="true">
             ❯
           </span>
@@ -212,19 +265,18 @@ export const Terminal = () => {
               outline: "none",
               color: C.ink,
               fontFamily: "var(--font-mono)",
-              fontSize: 13.5,
+              fontSize: 13,
               flex: 1,
               minWidth: 0,
             }}
             aria-label="Portfolio terminal command input"
           />
         </form>
-        <div ref={bottomRef} />
       </div>
 
       {/* Quick Action Chips */}
       <div
-        className="px-4 py-3 flex flex-wrap gap-2"
+        className="px-4 py-2.5 flex flex-wrap gap-1.5"
         style={{ borderTop: `1px solid ${C.panelBorder}` }}
       >
         {["help", "about", "projects", "experience", "skills", "contact", "clear"].map((c) => (
@@ -234,12 +286,12 @@ export const Terminal = () => {
             onClick={() => run(c)}
             style={{
               fontFamily: "var(--font-mono)",
-              fontSize: 11.5,
+              fontSize: 11,
               color: C.inkSoft,
               border: `1px solid ${C.panelBorder}`,
               background: "transparent",
             }}
-            className="px-2.5 py-1 rounded hover:opacity-80 transition-opacity cursor-pointer"
+            className="px-2 py-0.5 rounded hover:text-white hover:border-teal/50 transition-colors cursor-pointer"
           >
             {c}
           </button>

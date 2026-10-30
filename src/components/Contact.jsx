@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Mail, MapPin, ArrowUpRight, Copy, Check, Send, Clock, Globe } from "lucide-react";
+import { Mail, MapPin, ArrowUpRight, Copy, Check, Send, Clock, Globe, ExternalLink } from "lucide-react";
 import { PROFILE, C } from "../data/portfolioData";
 import { GithubIcon, LinkedinIcon } from "./Icons";
 import Reveal from "./Reveal";
@@ -7,20 +7,58 @@ import SectionLabel from "./SectionLabel";
 
 export const Contact = () => {
   const [copied, setCopied] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
-  const handleCopyEmail = async (e) => {
-    e.preventDefault();
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(""), 3500);
+  };
+
+  const copyToClipboard = async (text) => {
     try {
       if (navigator.clipboard) {
-        await navigator.clipboard.writeText(PROFILE.email);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      } else {
-        window.location.href = `mailto:${PROFILE.email}`;
+        await navigator.clipboard.writeText(text);
+        return true;
       }
     } catch {
-      window.location.href = `mailto:${PROFILE.email}`;
+      // Fallback below
     }
+    try {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      const successful = document.execCommand("copy");
+      document.body.removeChild(textArea);
+      return successful;
+    } catch {
+      return false;
+    }
+  };
+
+  const handleCopyEmail = async (e) => {
+    if (e) e.preventDefault();
+    await copyToClipboard(PROFILE.email);
+    setCopied(true);
+    showToast("Email copied to clipboard!");
+    setTimeout(() => setCopied(false), 2500);
+  };
+
+  const mailtoUrl = `mailto:${PROFILE.email}?subject=Software%20Developer%20Inquiry%20%E2%80%94%20Oluwaseyi%20Aina`;
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(PROFILE.email)}&su=${encodeURIComponent("Software Developer Opportunity / Inquiry")}`;
+
+  const handleSendEmailClick = async (e) => {
+    e.preventDefault();
+    // Copy email to clipboard immediately so user has it ready
+    await copyToClipboard(PROFILE.email);
+    setCopied(true);
+    showToast("Email copied! Launching mail client...");
+    setTimeout(() => setCopied(false), 2500);
+    // Trigger default desktop client
+    window.location.href = mailtoUrl;
   };
 
   return (
@@ -128,10 +166,13 @@ export const Contact = () => {
                 </div>
 
                 {/* Primary Action Button Cluster */}
-                <div className="flex flex-wrap items-center gap-3 mt-6 pt-5" style={{ borderTop: `1px solid ${C.panelBorder}88` }}>
-                  <a
-                    href={`mailto:${PROFILE.email}`}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold transition-transform hover:-translate-y-0.5 shadow-md"
+                <div className="flex flex-wrap items-center gap-2.5 mt-6 pt-5" style={{ borderTop: `1px solid ${C.panelBorder}88` }}>
+                  {/* Send Email button (mailto + auto-copy clipboard fallback) */}
+                  <button
+                    type="button"
+                    onClick={handleSendEmailClick}
+                    title="Send via your default email application"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-semibold transition-transform hover:-translate-y-0.5 shadow-md cursor-pointer"
                     style={{
                       background: C.teal,
                       color: C.bg,
@@ -139,13 +180,34 @@ export const Contact = () => {
                       fontSize: 14,
                     }}
                   >
-                    <Send size={15} aria-hidden="true" /> Send an Email
+                    <Send size={15} aria-hidden="true" />
+                    <span>Send an Email</span>
+                  </button>
+
+                  {/* Direct Gmail web compose for browser users */}
+                  <a
+                    href={gmailComposeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open Gmail web compose directly in your browser"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg font-medium transition-all hover:bg-white/5 cursor-pointer"
+                    style={{
+                      border: `1px solid ${C.teal}66`,
+                      color: C.teal,
+                      fontFamily: "var(--font-sans)",
+                      fontSize: 13,
+                    }}
+                  >
+                    <span>Open in Gmail</span>
+                    <ExternalLink size={13} aria-hidden="true" />
                   </a>
 
+                  {/* Copy Email Button */}
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium transition-all cursor-pointer"
+                    title="Copy email address to clipboard"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg font-medium transition-all cursor-pointer"
                     style={{
                       background: copied ? `${C.teal}18` : "transparent",
                       border: `1px solid ${copied ? C.teal : C.panelBorder}`,
@@ -157,16 +219,31 @@ export const Contact = () => {
                     {copied ? (
                       <>
                         <Check size={14} aria-hidden="true" />
-                        <span>Copied to clipboard</span>
+                        <span>Copied</span>
                       </>
                     ) : (
                       <>
                         <Copy size={14} aria-hidden="true" />
-                        <span>Copy Email</span>
+                        <span>Copy</span>
                       </>
                     )}
                   </button>
                 </div>
+
+                {/* Instant Feedback Toast */}
+                {toastMessage && (
+                  <div
+                    className="mt-3 text-xs font-mono px-3 py-1.5 rounded inline-flex items-center gap-2 transition-all animate-fade-in"
+                    style={{
+                      background: `${C.teal}15`,
+                      border: `1px solid ${C.teal}40`,
+                      color: C.teal,
+                    }}
+                  >
+                    <Check size={12} aria-hidden="true" />
+                    <span>{toastMessage}</span>
+                  </div>
+                )}
               </div>
             </Reveal>
           </div>
@@ -184,10 +261,10 @@ export const Contact = () => {
                 onMouseEnter={(el) => (el.currentTarget.style.borderColor = `${C.teal}66`)}
                 onMouseLeave={(el) => (el.currentTarget.style.borderColor = C.panelBorder)}
               >
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3.5">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-start gap-3.5">
                     <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+                      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
                       style={{ background: `${C.teal}15`, border: `1px solid ${C.teal}30` }}
                     >
                       <Mail size={18} color={C.teal} aria-hidden="true" />
@@ -196,19 +273,54 @@ export const Contact = () => {
                       <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: C.inkFaint }}>
                         PRIMARY INBOX
                       </div>
-                      <a
-                        href={`mailto:${PROFILE.email}`}
-                        className="font-medium hover:underline text-sm sm:text-base select-all"
-                        style={{ color: C.ink, fontFamily: "var(--font-sans)" }}
+                      <div
+                        className="font-medium text-sm sm:text-base select-all mt-0.5"
+                        style={{ color: C.ink, fontFamily: "var(--font-mono)" }}
                       >
                         {PROFILE.email}
-                      </a>
+                      </div>
+
+                      {/* Quick direct action links */}
+                      <div className="flex items-center gap-3 mt-3 text-xs font-mono">
+                        <button
+                          type="button"
+                          onClick={handleCopyEmail}
+                          className="hover:underline flex items-center gap-1 cursor-pointer"
+                          style={{ color: C.teal }}
+                        >
+                          <Copy size={11} aria-hidden="true" />
+                          <span>{copied ? "Copied" : "Copy"}</span>
+                        </button>
+                        <span style={{ color: C.panelBorder }}>•</span>
+                        <a
+                          href={gmailComposeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline flex items-center gap-1"
+                          style={{ color: C.inkSoft }}
+                        >
+                          <ExternalLink size={11} aria-hidden="true" />
+                          <span>Gmail</span>
+                        </a>
+                        <span style={{ color: C.panelBorder }}>•</span>
+                        <a
+                          href={mailtoUrl}
+                          className="hover:underline flex items-center gap-1"
+                          style={{ color: C.inkSoft }}
+                        >
+                          <Send size={11} aria-hidden="true" />
+                          <span>Mail App</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
 
                   <a
-                    href={`mailto:${PROFILE.email}`}
-                    aria-label="Send email directly"
+                    href={gmailComposeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open email compose in Gmail"
+                    title="Open compose in Gmail"
                     className="p-2 rounded-lg hover:bg-white/5 transition-colors"
                     style={{ color: C.inkSoft }}
                   >
