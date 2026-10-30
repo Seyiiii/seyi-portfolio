@@ -35,13 +35,6 @@ export const PROFILE = {
   bio: "Software developer in Lagos building reliable full-stack web applications and backend APIs. Physics graduate who debugs methodically, builds with Node/Express/React, and takes QA and production data integrity seriously.",
 };
 
-export const METRICS = [
-  { value: "12+", label: "Staging defects caught", sublabel: "Retested independently" },
-  { value: "5-Tier", label: "Custom RBAC built", sublabel: "Live inventory platform" },
-  { value: "MERN", label: "Full-stack architecture", sublabel: "Node, Express, Mongo, React" },
-  { value: "BSc", label: "Physics problem-solving", sublabel: "First-principles debugging" },
-];
-
 export const NAV_LINKS = [
   { name: "About", href: "about" },
   { name: "Experience", href: "experience" },
@@ -59,9 +52,9 @@ export const EXPERIENCE = [
     meta: "Lagos, Nigeria",
     points: [
       "Supporting a Lagos job marketplace for blue-collar workers, learning the codebase, architecture, and cloud setup from the development team.",
-      "Fixing bugs, keeping technical documentation current, and monitoring AWS infrastructure usage.",
-      "Retested 12 staging defects independently and maintain the test-case tracker. Built a Playwright crawler to speed up triage.",
-      "Coordinating planned integrations with WhatsApp and Smile ID (identity verification).",
+      "Implemented the Smile ID identity verification system for worker onboarding, KYC validation, and security compliance.",
+      "Investigated and resolved production bugs, monitored AWS infrastructure usage, and kept technical documentation current.",
+      "Retested 12 staging defects independently and maintain the comprehensive test-case tracker.",
     ],
   },
   {

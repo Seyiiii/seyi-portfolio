@@ -35,7 +35,7 @@ export const Footer = () => {
           color: C.inkFaint,
         }}
       >
-        {PROFILE.name} · Lagos, Nigeria · built with React &amp; Tailwind
+        {PROFILE.name} · Lagos, Nigeria
       </p>
 
       {/* Floating Back to Top Button */}
