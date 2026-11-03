@@ -105,7 +105,7 @@ export const Contact = () => {
                   textWrap: "balance",
                 }}
               >
-                Let&apos;s build something that lasts.
+                Get in touch.
               </h2>
               <p
                 style={{
@@ -117,8 +117,8 @@ export const Contact = () => {
                   textWrap: "pretty",
                 }}
               >
-                Whether you have an open Software Developer role, need backend architecture consultation, or want to
-                discuss engineering systems—my inbox is open.
+                I am actively open to full-time software developer opportunities, both remote and on-site in Lagos.
+                If you have an open role, questions about my projects, or an engineering challenge to discuss, feel free to reach out.
               </p>
             </Reveal>
 

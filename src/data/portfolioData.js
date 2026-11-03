@@ -32,7 +32,7 @@ export const PROFILE = {
   currentRole: "Technical Support at DVWorkers",
   status: "Technical Support at DVWorkers · open to software developer roles",
   resumeUrl: "/Oluwaseyi_Aina_Resume.pdf",
-  bio: "Software developer in Lagos building reliable full-stack web applications and backend APIs. Physics graduate who debugs methodically, builds with Node/Express/React, and takes QA and production data integrity seriously.",
+  bio: "Software developer in Lagos building full-stack web applications and backend APIs. Physics graduate from Lagos State University with hands-on experience in MERN systems, identity verification workflows, and production defect resolution.",
 };
 
 export const NAV_LINKS = [

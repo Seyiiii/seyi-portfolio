@@ -126,8 +126,8 @@ export const Hero = () => {
               textWrap: "pretty",
             }}
           >
-            I build full-stack MERN applications and backend APIs, and I hold my code to a high standard: writing test
-            cases, validating endpoints, and tracking down edge-case bugs before they hit users.
+            I build full-stack web applications with Node.js, Express, MongoDB, and React. My day-to-day focus is
+            writing reliable backend services, validating API inputs, and resolving bugs before they reach production.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 mt-8">

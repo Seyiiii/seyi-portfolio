@@ -39,7 +39,7 @@ export const ProjectCard = ({ project }) => {
     const rect = cardRef.current.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width - 0.5;
     const py = (e.clientY - rect.top) / rect.height - 0.5;
-    setTilt({ x: py * -6, y: px * 8 });
+    setTilt({ x: py * -3, y: px * 4 });
   };
 
   const onMouseLeave = () => {
@@ -102,13 +102,14 @@ export const ProjectCard = ({ project }) => {
         aria-labelledby={panelId}
         inert={!expanded || undefined}
         style={{
-          maxHeight: expanded ? 500 : 0,
+          display: "grid",
+          gridTemplateRows: expanded ? "1fr" : "0fr",
           overflow: "hidden",
           visibility: expanded ? "visible" : "hidden",
-          transition: "max-height 0.35s ease, visibility 0.35s ease",
+          transition: "grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease",
         }}
       >
-        <div className="px-5 py-5">
+        <div className="px-5 py-5" style={{ minHeight: 0, overflow: "hidden" }}>
           <p
             style={{
               fontFamily: "var(--font-sans)",

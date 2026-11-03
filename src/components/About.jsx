@@ -38,14 +38,13 @@ export const About = () => {
             className="space-y-6"
           >
             <p>
-              I&apos;m a software developer with a degree in physics. That background fundamentally shaped how I
-              write and test software: I don&apos;t guess when an endpoint breaks or an edge-case fails. I
-              isolate variables, reproduce the failure state, and trace it down to the exact root cause.
+              I am a software developer with a degree in physics from Lagos State University.
+              In physics, when an experiment does not match the model, you isolate variables, reproduce the issue, and test one change at a time.
+              I debug software with that same discipline.
             </p>
             <p>
-              Today, I work in technical support at DVWorkers—implementing the Smile ID identity verification
-              system for worker onboarding, investigating and resolving live production errors, and retesting staging
-              defects before deployment. In my personal engineering work, I build full-stack MERN systems like the{" "}
+              At DVWorkers, I work in technical support: integrating the Smile ID identity verification system for worker onboarding, investigating live production errors, and verifying defects on staging before releases.
+              In my personal projects, I build full-stack MERN applications like the{" "}
               <a
                 href="#work"
                 onClick={handleInventoryClick}
@@ -54,8 +53,7 @@ export const About = () => {
               >
                 Seyi Inventory platform
               </a>
-              —focusing on the unglamorous essentials: five-tier permission boundaries, clean schemas, and APIs
-              that stay resilient under real traffic.
+              , focusing on role-based permission boundaries, clean database schemas, and dependable REST endpoints.
             </p>
           </div>
         </Reveal>

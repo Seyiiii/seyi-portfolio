@@ -22,10 +22,10 @@ const COMMANDS = {
     `status: Open to software developer roles`,
   ],
   about: [
-    "Oluwaseyi Aina — Software Developer based in Lagos, Nigeria.",
-    "BSc in Physics (LASU) + TS Academy Backend Bootcamp.",
-    "Focus: Full-stack MERN platforms, REST APIs, and strict data integrity.",
-    `Current: ${PROFILE.currentRole} (Smile ID integration, production error fixes).`,
+    "Oluwaseyi Aina: Software Developer based in Lagos, Nigeria.",
+    "Education: BSc in Physics (LASU) and Backend Fellowship (TS Academy).",
+    "Focus: Full-stack MERN applications, database schemas, and REST APIs.",
+    `Current: ${PROFILE.currentRole} (Smile ID integration, bug fixes, AWS monitoring).`,
   ],
   experience: [
     "Work & Education Milestones:",
