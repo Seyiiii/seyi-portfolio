@@ -64,11 +64,13 @@ const AVAILABLE_COMMAND_NAMES = Object.keys(COMMANDS);
 export const Terminal = () => {
   const [history, setHistory] = useState([
     {
+      id: "init",
       cmd: null,
       output: [
         "Welcome to seyi@portfolio:~",
         "Type 'help' to see available commands or tap the quick pills below.",
       ],
+      isTyping: false,
     },
   ]);
   const [input, setInput] = useState("");
@@ -77,6 +79,34 @@ export const Terminal = () => {
 
   const terminalBodyRef = useRef(null);
   const inputRef = useRef(null);
+  const typingTimerRef = useRef(null);
+  const activeTaskRef = useRef(null);
+
+  // Stop active typing interval and immediately complete the pending text
+  const flushActiveTyping = useCallback(() => {
+    if (typingTimerRef.current) {
+      clearInterval(typingTimerRef.current);
+      typingTimerRef.current = null;
+    }
+    if (activeTaskRef.current) {
+      const { id, fullOutput } = activeTaskRef.current;
+      setHistory((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, output: fullOutput, isTyping: false } : item
+        )
+      );
+      activeTaskRef.current = null;
+    }
+  }, []);
+
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      if (typingTimerRef.current) {
+        clearInterval(typingTimerRef.current);
+      }
+    };
+  }, []);
 
   // Scroll ONLY the terminal body internally; NEVER scroll the outer browser window
   useEffect(() => {
@@ -85,32 +115,99 @@ export const Terminal = () => {
     }
   }, [history]);
 
-  const run = useCallback((raw) => {
-    const trimmed = raw.trim();
-    if (!trimmed) return;
+  const run = useCallback(
+    (raw) => {
+      const trimmed = raw.trim();
+      if (!trimmed) return;
 
-    setCommandHistory((prev) => [...prev, trimmed]);
-    setHistoryIndex(-1);
+      // Always fast-forward any currently typing output before executing the new command
+      flushActiveTyping();
 
-    const cmd = trimmed.toLowerCase();
+      setCommandHistory((prev) => [...prev, trimmed]);
+      setHistoryIndex(-1);
 
-    if (cmd === "clear") {
-      setHistory([]);
-      return;
-    }
+      const cmd = trimmed.toLowerCase();
 
-    if (COMMANDS[cmd]) {
-      setHistory((h) => [...h.slice(-MAX_TERMINAL_HISTORY), { cmd: raw, output: COMMANDS[cmd] }]);
-    } else {
+      if (cmd === "clear") {
+        setHistory([]);
+        return;
+      }
+
+      const targetLines = COMMANDS[cmd] || [
+        `command not found: '${raw}'. Type 'help' to see available commands.`,
+      ];
+
+      const id = `${Date.now()}-${Math.random()}`;
+      const prefersReducedMotion =
+        typeof window !== "undefined" &&
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // If user prefers reduced motion, render immediately without typewriter
+      if (prefersReducedMotion) {
+        setHistory((h) => [
+          ...h.slice(-MAX_TERMINAL_HISTORY),
+          { id, cmd: raw, output: targetLines, isTyping: false },
+        ]);
+        return;
+      }
+
+      // Dynamic pacing: calculate total characters so output completes in ~400-750ms
+      const totalChars = targetLines.reduce((acc, line) => acc + line.length, 0);
+      const step = Math.max(1, Math.ceil(totalChars / 38));
+      const tickMs = 15;
+
+      activeTaskRef.current = { id, fullOutput: targetLines };
+
+      let currentLineIdx = 0;
+      let currentCharIdx = 0;
+      const currentOutput = [""];
+
+      // Mount initial entry with writing status
       setHistory((h) => [
         ...h.slice(-MAX_TERMINAL_HISTORY),
-        {
-          cmd: raw,
-          output: [`command not found: '${raw}'. Type 'help' to see available commands.`],
-        },
+        { id, cmd: raw, output: [""], isTyping: true },
       ]);
-    }
-  }, []);
+
+      typingTimerRef.current = setInterval(() => {
+        const currentLine = targetLines[currentLineIdx] ?? "";
+        currentCharIdx += step;
+
+        if (currentCharIdx < currentLine.length) {
+          currentOutput[currentLineIdx] = currentLine.slice(0, currentCharIdx);
+        } else {
+          currentOutput[currentLineIdx] = currentLine;
+          currentLineIdx++;
+          currentCharIdx = 0;
+
+          if (currentLineIdx < targetLines.length) {
+            currentOutput.push("");
+          } else {
+            // Completed all lines
+            if (typingTimerRef.current) {
+              clearInterval(typingTimerRef.current);
+              typingTimerRef.current = null;
+            }
+            activeTaskRef.current = null;
+            setHistory((prev) =>
+              prev.map((item) =>
+                item.id === id ? { ...item, output: targetLines, isTyping: false } : item
+              )
+            );
+            return;
+          }
+        }
+
+        const snapshot = [...currentOutput];
+        setHistory((prev) =>
+          prev.map((item) =>
+            item.id === id ? { ...item, output: snapshot, isTyping: true } : item
+          )
+        );
+      }, tickMs);
+    },
+    [flushActiveTyping]
+  );
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -191,6 +288,7 @@ export const Terminal = () => {
           type="button"
           onClick={(e) => {
             e.stopPropagation();
+            flushActiveTyping();
             setHistory([]);
           }}
           title="Clear terminal buffer"
@@ -218,7 +316,7 @@ export const Terminal = () => {
       >
         {history.map((h, idx) => (
           <div
-            key={idx}
+            key={h.id || idx}
             className="mb-3.5 pb-3 border-b border-white/5 last:border-b-0 last:mb-0 last:pb-0"
           >
             {h.cmd && (
@@ -237,6 +335,22 @@ export const Terminal = () => {
               {h.output.map((line, lIdx) => (
                 <div key={lIdx} style={{ color: C.inkSoft, whiteSpace: "pre-wrap" }}>
                   {line}
+                  {/* Blinking writing cursor at the typing head */}
+                  {h.isTyping && lIdx === h.output.length - 1 && (
+                    <span
+                      style={{
+                        display: "inline-block",
+                        width: 7,
+                        height: 13,
+                        background: C.teal,
+                        marginLeft: 3,
+                        verticalAlign: "middle",
+                        opacity: 0.9,
+                      }}
+                      className="animate-pulse"
+                      aria-hidden="true"
+                    />
+                  )}
                 </div>
               ))}
             </div>
