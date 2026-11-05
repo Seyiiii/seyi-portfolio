@@ -24,6 +24,8 @@ export const PROFILE = {
     "QA & Debugging",
   ],
   location: "Lagos, Nigeria",
+  website: "https://www.ainaseyi.com.ng",
+  websiteLabel: "ainaseyi.com.ng",
   email: "ainaseyim@gmail.com",
   github: "https://github.com/Seyiiii",
   githubHandle: "github.com/Seyiiii",

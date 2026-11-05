@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-domain-here.example/sitemap.xml
+Sitemap: https://www.ainaseyi.com.ng/sitemap.xml
